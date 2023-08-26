@@ -5,6 +5,9 @@ const mongoose = require("mongoose")
 
 require("dotenv").config()
 
+const blogRoute = require('./route/blog')
+
+
 const app = express()
 
 // Connect Cloud Database
@@ -22,11 +25,7 @@ app.use(cors())
 app.use(morgan('dev')) // ดักตัว request
 
 // Route
-app.get("*", (req,res) => {
-  res.json({
-    data: "message from server"
-  })
-}) // สั่ง server อะไรก็ได้ที่มีการสั่ง run ตัว server ขึ้นมาแล้วให้ server response ทันที
+app.use('/api', blogRoute)
 
 const port = process.env.PORT || 8080
 app.listen(port,() => console.log(`start server in port ${port}`)) // สั่ง run server
