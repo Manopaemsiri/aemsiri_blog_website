@@ -1,6 +1,8 @@
 // ติดต่อฐานข้อมูล 
+
+// บันทึกข้อมูล
 exports.create=(req,res)=>{
   res.json({
-    data:"Hello From Blog Controller"
+    data: req.body
   })
 }
