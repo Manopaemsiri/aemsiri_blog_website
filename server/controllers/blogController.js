@@ -1,5 +1,6 @@
 // ติดต่อฐานข้อมูล 
 const slugify = require("slugify")
+const Blogs = require("../models/blogs")
 
 // บันทึกข้อมูล
 exports.create=(req,res)=>{
@@ -14,8 +15,12 @@ exports.create=(req,res)=>{
     case !content:
       return res.status(400).json({error:"กรุณาป้อนเนื้อหาบทความ"})
   }
-  res.json({
-    data:{title, content, author, slug}
+  // บันทึกข้อมูล
+  Blogs.create({title, content, author, slug},(err,blog)=>{
+    if(err){
+      res.status(400).json({error:err})
+    }
+    res.json(blog)
   })
 }
 
