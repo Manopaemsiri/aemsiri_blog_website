@@ -7,12 +7,21 @@ require("dotenv").config()
 
 const app = express()
 
-//middleware
+// Connect Cloud Database
+mongoose.connect(process.env.DATABASE,{
+  useNewUrlParser: true,
+  useUnifiedTopology: false
+})
+.then(() => console.log('Hello Database ^^'))
+.catch((err) => console.log(err + '--"'))
+
+
+// Middleware
 app.use(express.json()) // response ส่วนที่เป็น json กลับไปที่ฝั่ง client
 app.use(cors())
 app.use(morgan('dev')) // ดักตัว request
 
-//route
+// Route
 app.get("*", (req,res) => {
   res.json({
     data: "message from server"
