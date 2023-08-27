@@ -7,7 +7,6 @@ require("dotenv").config()
 
 const blogRoute = require('./routes/blog')
 
-
 const app = express()
 
 // Connect Cloud Database
